@@ -3,3 +3,4 @@ db.sqlite3
 coverage_run.sh
 coverage_report
 .coverage
+*.pyc
