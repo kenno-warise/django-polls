@@ -30,8 +30,3 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
-    - name: HTML Preview
-      id: html_preview
-      users: actions/html-preview-action@v2
-      with:
-        html_file: 'index.html'
