@@ -5,7 +5,7 @@ on:
     branches: test
     # branches: [ $default-branch ]
   pull_request:
-    branches: main
+    branches: test
     # branches: [ $default-branch ]
 
 jobs:
