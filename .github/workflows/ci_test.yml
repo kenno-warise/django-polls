@@ -44,3 +44,4 @@ jobs:
       uses: pavi2410/html-preview-action@v2
       with:
         html_file: 'htmlcov/index.html'
+        message: ${{ steps.html_preview.outputs.url }}
