@@ -25,7 +25,7 @@ class QuestionIndexViewTests(TestCase):
         If no questions exist, an appropriate message is displayed.
         """
         response = self.client.get(reverse('polls:index'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 505)
         self.assertContains(response, "No polls are available.")
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
@@ -100,18 +100,18 @@ class QuestionIndexViewTests(TestCase):
                 [question2, question1],
         )
 
-    """
+
     def test_no_authenticated_future_question_and_past_question(self):
-        
+        """
         認証されていない非公開質問は表示されない。
-    
+        """
         question1 = create_question(question_text="Past question.", days=-30)
         question2 = create_question(question_text="Future question.", days=30)
         self.client.logout()
         response = self.client.get(reverse('polls:index'))
         self.assertContains(response, "No polls are available.")
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
-    """
+
 
 # 詳細のテスト
 class QuestionDetailViewTests(TestCase):
