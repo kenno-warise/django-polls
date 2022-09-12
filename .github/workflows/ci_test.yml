@@ -2,7 +2,7 @@ name: Django CI
 
 on:
   push:
-    branches: main
+    branches: test
     # branches: [ $default-branch ]
   pull_request:
     # branches: main
@@ -43,5 +43,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./htmlcov # デフォルトは./public
+        publish_dir: htmlcov # デフォルトは./public
 
