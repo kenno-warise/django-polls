@@ -47,7 +47,7 @@ jobs:
           coverage html
           # python manage.py test
       - name: Upload artifact # Artifactにカバレッジレポートのデータを保存する
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-pages-artifact@v1
         with:
           # name: code-coverage-report
           path: htmlcov
