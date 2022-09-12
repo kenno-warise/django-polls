@@ -43,6 +43,7 @@ jobs:
       - name: Run Tests and coverage report # テストの実行とテストのカバレッジレポートを作成する
         run: |
           coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
+      - if: success()
           coverage report
           coverage html
       - name: Upload artifact # カバレッジレポートをアップロード
