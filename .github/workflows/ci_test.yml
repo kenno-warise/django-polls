@@ -28,27 +28,27 @@ jobs:
         # python-version: [3.7, 3.8, 3.9]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run Tests and coverage report # テストの実行とテストのカバレッジレポートを作成する
-      run: |
-        coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
-        coverage report
-        coverage html
-        # python manage.py test
-    - name: Upload artifact # Artifactにカバレッジレポートのデータを保存する
-      uses: actions/upload-artifact@v2
-      with:
-        # name: code-coverage-report
-        path: htmlcov
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run Tests and coverage report # テストの実行とテストのカバレッジレポートを作成する
+        run: |
+          coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
+          coverage report
+          coverage html
+          # python manage.py test
+      - name: Upload artifact # Artifactにカバレッジレポートのデータを保存する
+        uses: actions/upload-artifact@v2
+        with:
+          # name: code-coverage-report
+          path: htmlcov
   deploy:
     environment:
       name: github-pages
