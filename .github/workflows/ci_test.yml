@@ -55,7 +55,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to GitHub Pages # Pagesにデプロイ
-      id: deployment
-      uses: actions/deploy-pages@v1
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: htmlcov
+      - name: Deploy to GitHub Pages # Pagesにデプロイ
+        id: deployment
+        uses: actions/deploy-pages@v1
 
