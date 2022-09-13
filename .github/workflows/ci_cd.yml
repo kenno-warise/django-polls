@@ -56,7 +56,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     if: github.ref == "refs/heads/main"
-    nedds: build-test-upload-artifact
+    needs: build-test-upload-artifact
     # 環境変数
     environment:
       name: github-pages
