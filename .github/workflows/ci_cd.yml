@@ -41,8 +41,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run Tests and coverage report # テストの実行とテストのカバレッジレポートを作成する
+      - continue-on-error: true # 以下のコマンドが成功しても失敗しても続ける
         run: |
-          success()
           coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
           coverage report
           coverage html
