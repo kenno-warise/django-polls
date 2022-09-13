@@ -2,11 +2,11 @@ name: Django CI/CD
 
 on:
   push:
-    branches: ["test"]
-    # branches: [ $default-branch ]
+    # branches: ["test"]
+    branches: [ $default-branch ]
   pull_request:
-    branches: ["main"]
-    # branches: [ $default-branch ]
+    # branches: ["main"]
+    branches: [ $default-branch ]
   workflow_dispatch: # UIから手動で実行できるようになる
 
 permissions:
