@@ -25,10 +25,10 @@ class QuestionIndexViewTests(TestCase):
         If no questions exist, an appropriate message is displayed.
         """
         response = self.client.get(reverse('polls:index'))
-        self.assertEqual(response.status_code, 505)
+        self.assertEqual(response.status_code, 202)
         self.assertContains(response, "No polls are available.")
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
-
+        
     def test_past_question_no_choice(self):
         """
         過去の質問に対しても選択肢の無い質問は表示されない。
