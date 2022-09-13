@@ -30,8 +30,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        # - name: Setup Pages
-        # uses: actions/configure-pages@v2
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v3
         with:
@@ -41,9 +41,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run Test
-        continue-on-error: true
-        run: |
-          coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
+        continue-on-error: true # test runが失敗しても、以降の処理が続行されるようにする
+        run: coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
       - name: Run Coverage report
         run: |
           coverage report
