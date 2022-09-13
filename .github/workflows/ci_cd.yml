@@ -40,8 +40,8 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Error
-        continue-on-error: true
+          # - name: Error
+          # continue-on-error: true
       - name: Run Tests and coverage report # テストの実行とテストのカバレッジレポートを作成する
       - run: coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
       - run: coverage report
