@@ -2,11 +2,11 @@ name: Django CI/CD
 
 on:
   push:
-    # branches: ["test"]
-    branches: [ $default-branch ]
+    branches: ["test"]
+    # branches: [ $default-branch ]
   pull_request:
-    # branches: ["main"]
-    branches: [ $default-branch ]
+    branches: ["main"]
+    # branches: [ $default-branch ]
   workflow_dispatch: # UIから手動で実行できるようになる
 
 permissions:
@@ -54,12 +54,13 @@ jobs:
 
   # デプロイ用のジョブ
   deploy:
+    runs-on: ubuntu-latest
+    if: [ $default-branch ] == "main"
+    nedds: build-test-upload-artifact
     # 環境変数
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build-test-upload-artifact
     steps:
       - name: Deploy to GitHub Pages # Pagesにデプロイ
         id: deployment
