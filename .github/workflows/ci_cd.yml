@@ -55,7 +55,7 @@ jobs:
   # デプロイ用のジョブ
   deploy:
     runs-on: ubuntu-latest
-    if: [ $default-branch ] == "main"
+    if: github.ref == "refs/heads/main"
     nedds: build-test-upload-artifact
     # 環境変数
     environment:
