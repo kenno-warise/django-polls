@@ -42,7 +42,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run Tests and coverage report # テストの実行とテストのカバレッジレポートを作成する
       - run: coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
-      - if: always()
+      - if: failure()
       - run: coverage report
       - run: coverage html
         # run: |
