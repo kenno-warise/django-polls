@@ -42,6 +42,7 @@ jobs:
           pip install -r requirements.txt
           # - name: Error
           # continue-on-error: true
+      - name: Run Test and Coverage report
         run: |
           coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
           coverage report
