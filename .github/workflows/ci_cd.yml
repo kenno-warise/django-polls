@@ -28,7 +28,7 @@ jobs:
         python-version: [3.6]
         # python-version: [3.7, 3.8, 3.9]
     steps:
-      - name: Checkout ${{ github.head_ref }} ${{ github.ref_name }} ${{ github.base_ref }}
+      - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v2
@@ -55,7 +55,7 @@ jobs:
   # デプロイ用のジョブ
   deploy:
     runs-on: ubuntu-latest
-    #if: github.ref == "refs/heads/main"
+    if: github.base_ref == "main"
     needs: build-test-upload-artifact
     # 環境変数
     environment:
