@@ -1,4 +1,4 @@
-name: [ $default-branch ]Django CI/CD
+name: Django CI/CD
 
 on:
   push:
