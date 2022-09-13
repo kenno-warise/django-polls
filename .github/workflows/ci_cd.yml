@@ -42,14 +42,10 @@ jobs:
           pip install -r requirements.txt
           # - name: Error
           # continue-on-error: true
-      - name: Run Tests and coverage report # テストの実行とテストのカバレッジレポートを作成する
-      - run: coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
-      - run: coverage report
-      - run: coverage html
-        # run: |
-          # coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
-          # coverage report
-          # coverage html
+        run: |
+          coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
+          coverage report
+          coverage html
       - name: Upload artifact # カバレッジレポートをアップロード
         uses: actions/upload-pages-artifact@v1
         with:
