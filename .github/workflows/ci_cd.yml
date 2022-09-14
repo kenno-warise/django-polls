@@ -8,8 +8,6 @@ on:
   pull_request: # 設定するとジョブが重複してしまうのでNone
   # types:
   # - reopened
-    branches:
-      - test
     # branches: [ $default-branch ]
   workflow_dispatch: # UIから手動で実行できるようになる
 
