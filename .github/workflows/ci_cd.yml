@@ -9,7 +9,7 @@ on:
   # types:
   # - reopened
     branches:
-      - main
+      - test
     # branches: [ $default-branch ]
   workflow_dispatch: # UIから手動で実行できるようになる
 
