@@ -30,8 +30,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.base_ref }}
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -68,7 +66,7 @@ jobs:
       - name: Checkout
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.base_ref }}
       - name: Caverage to GitHub Pages # Pagesにデプロイ
         id: deployment
         uses: actions/deploy-pages@v1
