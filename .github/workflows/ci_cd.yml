@@ -53,7 +53,7 @@ jobs:
           path: htmlcov
 
   # デプロイ用のジョブ
-  deploy:
+  coverage-report:
     # if: "contains( github.base_ref , 'main')"
     # if: github.base_ref == 'main'
     runs-on: ubuntu-latest
@@ -63,6 +63,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages # Pagesにデプロイ
+      - name: Caverage to GitHub Pages # Pagesにデプロイ
         id: deployment
         uses: actions/deploy-pages@v1
