@@ -2,9 +2,9 @@ name: Django CI/CD
 
 on:
   push: # 以下のbranchへのプッシュが実行されたジョブが始まる
-    branches: test
+    branches: [ test ]
     # branches: [ $default-branch ]
-  pull_request: # 設定するとジョブが重複してしまうのでNone
+    # pull_request: # 設定するとジョブが重複してしまうのでNone
     # branches: [ $default-branch ]
   workflow_dispatch: # UIから手動で実行できるようになる
 
