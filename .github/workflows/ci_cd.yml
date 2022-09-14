@@ -1,7 +1,7 @@
 name: Django CI/CD
 
 on:
-  push:
+  push: # 以下のbranchへのプッシュが実行されたジョブが始まる
     branches: test
     # branches: [ $default-branch ]
   pull_request:
