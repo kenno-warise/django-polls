@@ -5,8 +5,8 @@ on:
     branches: test
     # branches: [ $default-branch ]
   pull_request: # 設定するとジョブが重複してしまうのでNone
-    types:
-      - reopened
+  # types:
+  # - reopened
     branches: main
     # branches: [ $default-branch ]
   workflow_dispatch: # UIから手動で実行できるようになる
