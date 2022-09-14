@@ -4,8 +4,7 @@ on:
   push: # 以下のbranchへのプッシュが実行されたジョブが始まる
     branches: test
     # branches: [ $default-branch ]
-  pull_request:
-    branches: main
+  pull_request: # 設定するとジョブが重複してしまうのでNone
     # branches: [ $default-branch ]
   workflow_dispatch: # UIから手動で実行できるようになる
 
@@ -53,7 +52,7 @@ jobs:
           path: htmlcov
 
   # デプロイ用のジョブ
-  deploy:
+  coverage-report:
     # if: "contains( github.base_ref , 'main')"
     # if: github.base_ref == 'main'
     runs-on: ubuntu-latest
@@ -63,6 +62,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages # Pagesにデプロイ
+      - name: Caverage to GitHub Pages # Pagesにデプロイ
         id: deployment
         uses: actions/deploy-pages@v1
