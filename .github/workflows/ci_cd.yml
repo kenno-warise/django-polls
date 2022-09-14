@@ -54,8 +54,8 @@ jobs:
 
   # デプロイ用のジョブ
   deploy:
-    if: "contains( github.base_ref , 'main')"
-    # if: ${{ github.base_ref }} == 'main'
+    # if: "contains( github.base_ref , 'main')"
+    if: github.base_ref == 'main'
     runs-on: ubuntu-latest
     needs: build-test-upload-artifact
     # 環境変数
