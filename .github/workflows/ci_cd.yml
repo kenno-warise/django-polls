@@ -6,7 +6,7 @@ on:
     branches: test # 以下のbranchへのプッシュが実行されたジョブが始まる
     # branches: [ $default-branch ]
   pull_request:
-    branches: main # 設定するとジョブが重複してしまうのでNone
+    branches: test # 設定するとジョブが重複してしまうのでNone
     types: closed
     # branches: [ $default-branch ]
 
