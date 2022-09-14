@@ -5,6 +5,8 @@ on:
     branches: [ test ]
     # branches: [ $default-branch ]
   pull_request: # 設定するとジョブが重複してしまうのでNone
+    types:
+      - reopened
     branches: [ main ]
     # branches: [ $default-branch ]
   workflow_dispatch: # UIから手動で実行できるようになる
@@ -61,12 +63,8 @@ jobs:
     # 環境変数
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.coverage.outputs.page_url }}
     steps:
-      - name: Checkout
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.base_ref }}
       - name: Caverage to GitHub Pages # Pagesにデプロイ
-        id: deployment
+        id: coverage
         uses: actions/deploy-pages@v1
