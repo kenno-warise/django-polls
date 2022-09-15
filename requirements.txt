@@ -1,2 +1,5 @@
-Django
-coverage
+Django==3.2.15
+coverage==6.2
+flake8==5.0.4
+black==22.8.0
+isort==5.10.1
