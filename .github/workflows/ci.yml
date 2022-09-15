@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
 
-  build-test-upload-artifact: # ビルドとテスト
+  build-test-codecheck-artifact: # ビルドとテスト
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -41,6 +41,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      - name: Run Code checker
+        continue-on-error: true
+        run: flake8 polls mysite
       - name: Run Test
         continue-on-error: true # test runが失敗しても、以降の処理が続行されるようにする
         run: coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
@@ -56,7 +59,7 @@ jobs:
   # デプロイ用のジョブ
   coverage-report:
     runs-on: ubuntu-latest
-    needs: build-test-upload-artifact
+    needs: build-test-codecheck-artifact
     # 環境変数
     environment:
       name: github-pages
