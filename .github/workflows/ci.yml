@@ -43,7 +43,10 @@ jobs:
           pip install -r requirements.txt
       - name: Run Code checker # コードのチェック
         continue-on-error: true
-        run: flake8 polls mysite
+        run: |
+          black --check polls
+          flake8 polls mysite
+          isort --check polls
       - name: Run Test
         continue-on-error: true # test runが失敗しても、以降の処理が続行されるようにする
         run: coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
@@ -51,10 +54,10 @@ jobs:
         run: |
           coverage report
           coverage html
-      - name: Run Migration check
+      - name: Run Migration check # データベーススキーマとモデルが一致しているか
         continue-on-error: true
         run: python3 manage.py makemigrations --check
-      - name: Run Validate deploy
+      - name: Run Validate deploy # 安全にデプロイできるか検証
         run: python3 manage.py check --deploy
       - name: Upload artifact # カバレッジレポートをアップロード
         uses: actions/upload-pages-artifact@v1

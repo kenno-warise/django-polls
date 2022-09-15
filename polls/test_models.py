@@ -8,7 +8,6 @@ from .models import Choice, Question
 
 # モデルQuestionのテスト
 class QuestionModelTests(TestCase):
-
     def test_was_published_recently_with_future_question(self):
         """
         was_published_recently() returns False for questions whose pub_date is in the future.
@@ -38,7 +37,8 @@ class QuestionModelTests(TestCase):
         strメソッドではquestion_textの値が返される。
         """
         question = Question(question_text="question")
-        self.assertEqual(question.__str__(), 'question')
+        self.assertEqual(question.__str__(), "question")
+
 
 """
 # モデルChoiceのテスト
