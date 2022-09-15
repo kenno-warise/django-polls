@@ -3,10 +3,10 @@ name: Django CI/CD
 on:
   workflow_dispatch: # UIから手動で実行できるようななる
   push:
-    branches: test # 以下のbranchへのプッシュが実行されたジョブが始まる
+    branches: [ test ] # 以下のbranchへのプッシュが実行されたジョブが始まる
     # branches: [ $default-branch ]
-  pull_request: # 設定するとジョブが重複してしまうのでNone
-    types: closed
+  pull_request: [ main ]# 設定するとジョブが重複してしまうのでNone
+  # types: closed
     # branches: [ $default-branch ]
 
 permissions:
