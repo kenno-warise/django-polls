@@ -3,7 +3,7 @@ name: Django CI
 on:
   workflow_dispatch: # UIから手動で実行できるようななる
   push:
-    branches: django-polls/** # 以下のbranchへのプッシュが実行されたジョブが始まる
+    branches: releases/** # 以下のbranchへのプッシュが実行されたジョブが始まる
     # branches: [ $default-branch ]
     # pull_request:
     # branches: [ main ]# 設定するとジョブが重複してしまうのでNone
