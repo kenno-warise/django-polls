@@ -33,7 +33,7 @@ class QuestionIndexViewTests(TestCase):
         """
         過去の質問に対しても選択肢の無い質問は表示されない。
         """
-        question = create_question(question_text="Past question.", days=-30)
+        create_question(question_text="Past question.", days=-30)
         response = self.client.get(reverse('polls:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No polls are available.")
