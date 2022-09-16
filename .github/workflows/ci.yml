@@ -44,7 +44,7 @@ jobs:
         run: |
           coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
         env:
-          DATABASE_URL: sqlite3://localhost/db.sqlite3
+          DATABASE_URL: sqlite://localhost/testdb.sqlite
       - name: Run Coverage report
         run: |
           coverage report
