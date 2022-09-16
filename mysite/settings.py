@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m)=g&92!4=5hvhipiu_d3fj&nypky*_(2#y&di*d4v#vdq!x^%'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -124,3 +124,18 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Heroku設定
+
+import django_on_heroku
+
+django_on_heroku.settings(locals())
+
+# Set DEBUG to False in remote
+
+import os
+
+path = 'venv'
+
+if not os.path.isdir(path):
+    DEBUG = False
