@@ -43,6 +43,8 @@ jobs:
         continue-on-error: true # test runが失敗しても、以降の処理が続行されるようにする
         run: |
           coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
+        env:
+          DATABASE_URL: sqlite://localhost/db.sqlite
       - name: Run Coverage report
         run: |
           coverage report
