@@ -39,6 +39,7 @@ jobs:
       - name: Run Code checker # コードのチェック
         continue-on-error: true
         run: |
+          pip install black flake8 isort
           black --check polls
           flake8 polls mysite
           isort --check polls
@@ -49,6 +50,7 @@ jobs:
     steps:
       - name: Run Test
         continue-on-error: true # test runが失敗しても、以降の処理が続行されるようにする
+        run: pip install coverage
         run: coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
       - name: Run Coverage report
         run: |
