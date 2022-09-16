@@ -67,7 +67,7 @@ jobs:
 
   Test-CoverageReport: # テストのカバレッジレポートをデプロイ
     runs-on: ubuntu-latest
-    needs: [Build CodeCheck Test DBCheck-and-DepValid]
+    needs: [Build, CodeCheck, Test, DBCheck-and-DepValid]
     environment: # 環境変数
       name: github-pages
       url: ${{ steps.coverage.outputs.page_url }}
