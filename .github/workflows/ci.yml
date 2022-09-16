@@ -50,8 +50,9 @@ jobs:
     steps:
       - name: Run Test
         continue-on-error: true # test runが失敗しても、以降の処理が続行されるようにする
-        run: pip install coverage
-        run: coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
+        run: |
+          pip install coverage
+          coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
       - name: Run Coverage report
         run: |
           coverage report
