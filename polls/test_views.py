@@ -246,9 +246,7 @@ class QuestionVoteViewTests(TestCase):
         質問の選択肢を選択して投票した結果。
         """
         past_question = create_question(question_text="Past Question.", days=-5)
-        past_question.choice_set.create(
-            choice_text="Past choice 1.", votes=0
-        )
+        past_question.choice_set.create(choice_text="Past choice 1.", votes=0)
         url = reverse("polls:vote", args=(past_question.id,))
         response = self.client.post(url, {"choice": 1})
         self.assertRedirects(response, "/1/results/", msg_prefix="リダイレクト先URLが違う")
