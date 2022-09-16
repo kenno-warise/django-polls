@@ -1,18 +1,8 @@
-name: Django Polls App CI
+name: Django Polls App CD
 
 on:
-  workflow_dispatch: # UIから手動で実行できるようななる
-  push:
-    branches: releases/** # 以下のbranchへのプッシュが実行されたジョブが始まる
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  pull_request:
+    branches: main # 以下のbranchへのプッシュが実行されたジョブが始まる
 
 jobs:
 
@@ -21,8 +11,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        # - name: Setup Pages
-        # uses: actions/configure-pages@v2
       - name: Set up Python 3.6
         uses: actions/setup-python@v3
         with:
@@ -38,30 +26,20 @@ jobs:
           flake8 polls mysite
           isort --check polls
       - name: Run Test
-        continue-on-error: true # test runが失敗しても、以降の処理が続行されるようにする
         run: |
           coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
       - name: Run Coverage report
         run: |
           coverage report
-          coverage html
       - name: Run Migration check # データベーススキーマとモデルが一致しているか
         continue-on-error: true
         run: python3 manage.py makemigrations --check
       - name: Run Validate deploy # 安全にデプロイできるか検証
         run: python3 manage.py check --deploy
-      - name: Upload artifact # カバレッジレポートをアップロード
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: htmlcov
 
-  Test-CoverageReport: # テストのカバレッジレポートをデプロイ
+  Deploy: # アプリデプロイ
     runs-on: ubuntu-latest
     needs: Build-Test
-    environment: # 環境変数
-      name: github-pages
-      url: ${{ steps.coverage.outputs.page_url }}
     steps:
-      - name: Caverage to GitHub Pages # Pagesにデプロイ
-        id: coverage
-        uses: actions/deploy-pages@v1
+      - name: Deploy OK
+        run: echo "Deploy test"
