@@ -108,8 +108,8 @@ class QuestionIndexViewTests(TestCase):
         """
         認証されていない非公開質問は表示されない。
         """
-        question1 = create_question(question_text="Past question.", days=-30)
-        question2 = create_question(question_text="Future question.", days=30)
+        create_question(question_text="Past question.", days=-30)
+        create_question(question_text="Future question.", days=30)
         self.client.logout()
         response = self.client.get(reverse("polls:index"))
         self.assertContains(response, "No polls are available.")
@@ -246,7 +246,7 @@ class QuestionVoteViewTests(TestCase):
         質問の選択肢を選択して投票した結果。
         """
         past_question = create_question(question_text="Past Question.", days=-5)
-        past_choice = past_question.choice_set.create(
+        past_question.choice_set.create(
             choice_text="Past choice 1.", votes=0
         )
         url = reverse("polls:vote", args=(past_question.id,))

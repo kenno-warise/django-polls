@@ -40,14 +40,14 @@ class QuestionModelTests(TestCase):
         self.assertEqual(question.__str__(), "question")
 
 
-"""
+
 # モデルChoiceのテスト
 class ChoiceModelTests(TestCase):
 
     def test_str_method_returns_choice_text(self):
-        
+        """
         strメソッドではchoice_textの値が返される。
-        
+        """
         choice = Choice(choice_text="choice")
         self.assertEqual(choice.__str__(), 'choice')
-"""
+
