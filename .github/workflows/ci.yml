@@ -32,7 +32,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Django Collectstatic # staticfilesを作成しTestを通過する
-        run: pyhton3 manage.py collectstatic
+        run: python3 manage.py collectstatic
       - name: Run Code checker # コードのチェック
         continue-on-error: true
         run: |
