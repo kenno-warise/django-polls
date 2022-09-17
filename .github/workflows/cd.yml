@@ -50,6 +50,7 @@ jobs:
     steps:
       - name: Deploy
         run: |
+          echo ${SSH_PORT}
           echo $SSH_KEY > secret_key
           ssh -p $SSH_PORT -i secret_key $SSH_USER@$SSH_HOST
           echo date > date.txt
