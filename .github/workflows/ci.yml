@@ -38,7 +38,9 @@ jobs:
       - name: Run Code checker # コードのチェック
         continue-on-error: true
         run: |
-          echo $secretkey
+          printenv
+          export DJANGO_SECRET_KEY=$secretkey
+          printenv
           black --check polls
           flake8 polls mysite
           isort --check polls
