@@ -19,7 +19,7 @@ jobs:
   Build-Test: # ビルドとテスト
     runs-on: ubuntu-latest
     env:
-      secretkey: ${{ secrets.DJANGO_SECRET_KEY }}
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -39,7 +39,7 @@ jobs:
         continue-on-error: true
         run: |
           printenv
-          export DJANGO_SECRET_KEY=$secretkey
+          echo $DJANGO_SECRET_KEY
           printenv
           black --check polls
           flake8 polls mysite
