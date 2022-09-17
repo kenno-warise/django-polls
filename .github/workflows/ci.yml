@@ -31,8 +31,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Django Collectstatic # staticfilesを作成しTestを通過する
-        run: python3 manage.py collectstatic
       - name: Run Code checker # コードのチェック
         continue-on-error: true
         run: |
@@ -43,8 +41,6 @@ jobs:
         continue-on-error: true # test runが失敗しても、以降の処理が続行されるようにする
         run: |
           coverage run --include=polls/* --omit=polls/migrations/* manage.py test polls
-        env:
-          DATABASE_URL: sqlite://localhost/testdb.sqlite
       - name: Run Coverage report
         run: |
           coverage report
