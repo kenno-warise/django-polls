@@ -124,7 +124,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+"""
 # Heroku設定
 
 import django_on_heroku
@@ -139,3 +139,4 @@ path = 'venv'
 
 if not os.path.isdir(path):
     DEBUG = False
+"""
