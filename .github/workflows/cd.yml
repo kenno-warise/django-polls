@@ -45,8 +45,8 @@ jobs:
     steps:
       - name: Deploy
         run: |
-          echo $SSH_PORT
-          echo $SSH_USER
-          echo $SSH_HOST
+          echo ${SSH_PORT}
+          echo ${SSH_USER}
+          echo ${SSH_HOST}
           # ssh -p${SSH_PORT} ${SSH_USER}@${SSH_HOST} -i${SSH_KEY}
           echo date > date.txt
