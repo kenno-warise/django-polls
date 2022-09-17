@@ -8,6 +8,8 @@ jobs:
 
   Build-Test: # ビルドとテスト
     runs-on: ubuntu-latest
+    env: # 仮想環境内の環境変数を定義
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
