@@ -46,7 +46,7 @@ jobs:
       - name: Deploy
         run: |
           echo ${{ secrets.SSH_PORT }}
-          echo ${[ secrets.SSH_USER }}
+          echo ${{ secrets.SSH_USER }}
           echo ${{ secrets.SSH_HOST }}
           # ssh -p${SSH_PORT} ${SSH_USER}@${SSH_HOST} -i${SSH_KEY}
           echo date > date.txt
