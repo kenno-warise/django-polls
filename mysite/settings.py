@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 try:
     SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
-except AttributeError:
+except KeyError:
     import json
 
     with open('secret_keys.json', 'r') as key:
