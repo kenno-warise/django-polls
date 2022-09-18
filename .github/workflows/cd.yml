@@ -2,7 +2,7 @@ name: Django Polls App CD
 
 on:
   push:
-    branches: main # 以下のbranchへのプッシュが実行されたジョブが始まる
+    branches: releases/1 # 以下のbranchへのプッシュが実行されたジョブが始まる
 
 jobs:
 
@@ -42,11 +42,6 @@ jobs:
   Deploy: # アプリデプロイ
     runs-on: ubuntu-latest
     needs: Build-Test
-    env:
-      SSH_PORT: ${{ secrets.SSH_PORT }}
-      SSH_KEY: ${{ secrets.SSH_KEY }}
-      SSH_USER: ${{ secrets.SSH_USER }}
-      SSH_HOST: ${{ secrets.SSH_HOST }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -54,5 +49,10 @@ jobs:
         run: |
           echo ${SSH_KEY} > id_rsa
           chmod 600 id_rsa
-          ssh -o StrictHostKeyChecking=no -p ${SSH_PORT} -i id_rsa ${SSH_USER}@${SSH_HOST}
+          ssh -o StrictHostKeyChecking=no -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} -i id_rsa
           echo date > date.txt
+        env:
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
