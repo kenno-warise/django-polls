@@ -49,8 +49,10 @@ jobs:
         run: |
           echo ${SSH_KEY} > id_rsa
           chmod 600 id_rsa
-          ssh -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} -i id_rsa
+          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+          -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} -i id_rsa
           echo date > date.txt
+          ls
         env:
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
