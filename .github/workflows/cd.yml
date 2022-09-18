@@ -51,5 +51,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            echo date > date.txt
-            ls
+            date > date.txt
+            cat date.txt
