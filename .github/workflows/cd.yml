@@ -43,16 +43,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: Build-Test
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Deploy
-        run: |
-          echo $SSH_KEY > ${{ runner.temp }}/id_rsa
-          chmod 600 ${{ runner.temp }}/id_rsa
-          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
-          -p ${SSH_PORT} $SSH_ALL_ADR -i ${{ runner.temp }}/id_rsa
-          echo date > date.txt
-          ls
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: $SSH_HOST
+          username: $SSH_USER
+          port: $SSH_PORT
+          key: $SSH_KEY
+          script: |
+            echo date > date.txt
+            ls
         env:
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
