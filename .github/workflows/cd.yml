@@ -2,7 +2,7 @@ name: Django Polls App CD
 
 on:
   push:
-    branches: releases/1 # 以下のbranchへのプッシュが実行されたジョブが始まる
+    branches: main # 以下のbranchへのプッシュが実行されたジョブが始まる
 
 jobs:
 
