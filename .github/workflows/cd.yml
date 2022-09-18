@@ -48,6 +48,8 @@ jobs:
       SSH_USER: ${{ secrets.SSH_USER }}
       SSH_HOST: ${{ secrets.SSH_HOST }}
     steps:
+      - name: Checkout
+      - uses: actions/checkout@v2
       - name: Deploy
         run: |
           echo ${SSH_KEY} > secret_key
