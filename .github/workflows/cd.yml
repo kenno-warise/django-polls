@@ -42,17 +42,14 @@ jobs:
   Deploy: # アプリデプロイ
     runs-on: ubuntu-latest
     needs: Build-Test
-    env:
-      SSH_PORT: ${{ secrets.SSH_PORT }}
-      SSH_KEY: ${{ secrets.SSH_KEY }}
-      SSH_USER: ${{ secrets.SSH_USER }}
-      SSH_HOST: ${{ secrets.SSH_HOST }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Deploy
-        run: |
-          echo ${SSH_KEY} > id_rsa
-          chmod 600 id_rsa
-          ssh -o StrictHostKeyChecking=no -p ${SSH_PORT} -i id_rsa ${SSH_USER}@${SSH_HOST}
-          echo date > date.txt
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            date > date.txt
+            cat date.txt
