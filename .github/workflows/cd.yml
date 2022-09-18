@@ -46,16 +46,10 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
-          host: $SSH_HOST
-          username: $SSH_USER
-          port: $SSH_PORT
-          key: $SSH_KEY
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
             echo date > date.txt
             ls
-        env:
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          SSH_KEY: ${{ secrets.SSH_KEY }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_ALL_ADR: ${{ secrets.SSH_ALL_ADR }}
