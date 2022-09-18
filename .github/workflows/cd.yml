@@ -50,7 +50,7 @@ jobs:
           echo ${SSH_KEY} > ${{ runner.temp }}/id_rsa
           chmod 600 ${{ runner.temp }}/id_rsa
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
-          -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} -i ${{ runner.temp }}/id_rsa
+          -p ${SSH_PORT} $SSH_ALL_ADR -i ${{ runner.temp }}/id_rsa
           echo date > date.txt
           ls
         env:
@@ -58,3 +58,4 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_ALL_ADR: ${{ secrets.SSH_ALL_ADR }}
