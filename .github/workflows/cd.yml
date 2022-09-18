@@ -52,7 +52,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Deploy
         run: |
-          echo ${SSH_KEY} > secret_key
-          chmod 600 secret_key
-          ssh -o StrictHostKeyChecking=no -p ${SSH_PORT} -i secret_key ${SSH_USER}@${SSH_HOST}
+          echo ${SSH_KEY} > id_rsa
+          chmod 600 id_rsa
+          ssh -o StrictHostKeyChecking=no -p ${SSH_PORT} -i id_rsa ${SSH_USER}@${SSH_HOST}
           echo date > date.txt
